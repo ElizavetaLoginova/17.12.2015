@@ -1,0 +1,89 @@
+#include <iostream>
+using namespace std;
+
+const int M = 20;
+void EnterMatrix(int[][M], int n);
+void DisplayMatrix(int[][M], int n);
+void Work(int[][M], int n);
+
+int main()
+{
+	while (true){
+		int matrix[M][M] = { { 0 } };
+		int n;
+		while (true)
+		{
+			cout << "Enter n <= " << M << endl;
+			cin >> n;
+			if (n > 0 && n <= M );
+			{
+				break;
+			}
+			system("pause");
+			return 0;
+		}
+		EnterMatrix(matrix, n);
+
+		cout << endl;
+		cout << "Sourse matrix: ";
+		cout << endl;
+		DisplayMatrix(matrix, n);
+		cout << endl;
+
+		Work(matrix, n);
+
+		cout << "Changed matrix: ";
+		cout << endl;
+		DisplayMatrix(matrix, n);
+
+		char yes;
+		cout << "Would you like to countinie? Press y/Y: " << endl;
+		cin >> yes;
+		if (yes == 'y' || yes == 'Y')
+			continue;
+		break;
+		system("cls");
+		system("pause");
+	}
+	return 0;
+}
+
+void EnterMatrix(int a[][M], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			a[i][j] = i+1;
+		}
+	}
+}
+
+void DisplayMatrix(int a[][M], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout.width(5);
+			cout << a[i][j];
+		}
+		cout << endl;
+	}
+}
+
+void Swap(int &a, int &b)
+{
+	int t = a;
+	a = b;
+	b = t;
+}
+
+void Work(int a[][M], int n)
+{
+	for (int i = 0; i < n; i++)
+		for (int j = i + 1; j < n; j++)
+		{
+			Swap(a[i][j], a[j][i]);
+		}
+}
