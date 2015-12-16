@@ -2,7 +2,7 @@
 using namespace std;
 
 const int M = 20;
-void EnterMatrix(int[][M], int n);
+void Matrix(int[][M], int n);
 void DisplayMatrix(int[][M], int n);
 void Work(int[][M], int n);
 
@@ -22,7 +22,7 @@ int main()
 			system("pause");
 			return 0;
 		}
-		EnterMatrix(matrix, n);
+		Matrix(matrix, n);
 
 		cout << endl;
 		cout << "Sourse matrix: ";
@@ -48,7 +48,7 @@ int main()
 	return 0;
 }
 
-void EnterMatrix(int a[][M], int n)
+void Matrix(int a[][M], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
