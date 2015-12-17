@@ -129,11 +129,8 @@ int SearchForTheMaxElement(int a[][M], int n, int m)
 
 void Work(int a[][M], int k, int l, int n, int m)
 {
-	for (int i = 0; i < n; i++)
-	{
 		for (int j = 0; j < m; j++)
 		{
 			Swap(a[k][j], a[l][j]);
 		}
-	}
 }
