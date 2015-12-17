@@ -1,0 +1,118 @@
+#include <iostream>
+using namespace std;
+
+const int M = 20;
+void EnterMatrix(char[][M], int n, int m);
+void DisplayMatrix(char[][M], int n, int m);
+int NumberOfSymbolsRight(char a[][M], int n, int m, int symbol);
+int NumberOfSymbolsLeft(char a[][M], int n, int m, int symbol);
+
+int main()
+{
+	while (true){
+		char matrix[M][M] = { { 0 } };
+		int n, m;
+		while (true)
+		{
+			cout << "Enter n <= " << M << endl;
+			cin >> n;
+			cout << "Enter m <=" << M << endl;
+			cin >> m;
+			if (n > 0 && n <= M && m <= M);
+			{
+				break;
+			}
+			system("pause");
+			return 0;
+		}
+		EnterMatrix(matrix, n, m);
+
+		char symbol;
+		cout << "Enter the symbol you want to find: " << endl;
+		cin >> symbol;
+
+		cout << endl;
+		cout << "Sourse matrix: ";
+		cout << endl;
+		DisplayMatrix(matrix, n, m);
+		cout << endl;
+
+		cout << " Number of symbol in the lower right triangle" << endl << " concerning the secondary diagonal" << symbol << " is: " << NumberOfSymbolsRight(matrix, n, m, symbol);
+		cout << endl;
+
+		cout << " Number of symbol in the lower left triangle" << endl << " concerning the main diagonal" << symbol << " is: " << NumberOfSymbolsLeft(matrix, n, m, symbol);
+		cout << endl;
+
+		char yes;
+		cout << "Would you like to countinie? Press y/Y: " << endl;
+		cin >> yes;
+		if (yes == 'y' || yes == 'Y')
+			continue;
+		break;
+		system("cls");
+		system("pause");
+	}
+	return 0;
+}
+
+void EnterMatrix(char a[][M], int n, int m)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cout << "a[" << (i + 1) << "][" << (j + 1) << "]=";
+			cin >> a[i][j];
+		}
+	}
+}
+
+bool Hex(int z, char symbol)
+{
+	char b[] = "0123456789ABCDEF";
+
+	while(z)
+	{
+		int k = z % 16;
+		if (b[k] == symbol) return true;
+		z /= 16;
+	}
+	return false;
+}
+
+void DisplayMatrix(char a[][M], int n, int m)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cout.width(5);
+			cout << a[i][j];
+		}
+		cout << endl;
+	}
+}
+
+int NumberOfSymbolsRight(char a[][M], int n, int m, int symbol) //the lower right triangle concerning the secondary diagonal
+{
+	int counter = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; (j + i >= n - 1 && j < m); j++)
+		if (Hex(a[i][j], symbol))
+			counter++;
+	}
+	return counter;
+}
+
+int NumberOfSymbolsLeft(char a[][M], int n, int m, int symbol) //the left lower triangle concerning the the main diagonal
+{
+	int counter = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j + i <= n - 1; j++)
+		if (symbol == a[i][j])
+			counter++;
+	}
+	return counter;
+}
